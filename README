@@ -1,5 +1,30 @@
-A jQuery plugin to add inline labels to form fields.
+A jQuery plugin to add usable inline labels to form fields that don't disappear until you enter input.
 
-The inline labels only disappearing once the user has inputted some data. This avoids the problem of the user focusing the field and forgetting what the label was because it disappeared. It also means you can auto-focus fields.
+== Usage instructions
 
-Enjoy!
+Add this to the HEAD of the document (after you include jQuery, of course):
+
+<script src="jquery.inline-labels.js" type="text/javascript" charset="utf-8"></script>
+<link rel="stylesheet" href="jquery.inline-labels.css" type="text/css" media="all" charset="utf-8" />
+
+And add a class 'inline' to every label you wish to act inline:
+
+<label for="msg" class="inline">Enter your msg...</label>
+<textarea id="msg"></textarea>
+
+See demo.html for an example.
+
+== Customizing the appearance of the inline labels
+
+In the stylesheet (jquery.inline-labels.css) you can change the color of the inline labels. By default, they are #999 when blurred and #ccc when the field has focus.
+
+== Why is this better than inline label plugin X?
+
+These inline labels only disappearing once the user has inputted some data. This avoids the problem of the user focusing the field and forgetting what the label was because it disappeared. It also means you can auto-focus fields safely.
+
+The plugin automatically detects the styling of the inputs, and then style and positions the inline labels accordingly. It positions the labels precisely so they look exactly like native placeholder text.
+
+== Notes
+
+* Doesn't work with resizing (text/zoom). Yet!
+* Blur doesn't trigger properly when moving directly from a textarea to another input. Possibly this is a browser bug. To be investigated!

@@ -1,84 +1,25 @@
 
-textarea {
-  border: 1px solid #678;
-  padding: 5px;
-  font-size: 16px;
-  line-height: 20px;
-}
-
+/* user-defined settings */
 
 label.inline.supported {
-  position: absolute;
-  cursor: text;
-  visibility: hidden;
-  overflow: hidden;
   color: #999;
-  padding: 0;
-  margin: 0;
-  border: 0;
 }
 label.inline.supported.focus {
   color: #ccc;
 }
+
+/* don't change any of this! */
+
+label.inline.supported {
+  position: absolute !important;
+  cursor: text !important;
+  visibility: hidden !important;
+  overflow: hidden !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  border: 0 !important;
+}
 label.inline.supported.empty {
-  visibility: visible;
+  visibility: visible !important;
 }
 
-/*span.inline {
-  position: relative;
-  background: #fff; 
-}
-span.inline label {
-  font-size: 16px;
-  left: 6px;
-  position: absolute;
-  display: block;
-  top: 50%;
-  height: 1em;
-  line-height: 1em;
-  margin-top: -0.5em;
-  z-index: 25;
-  color: #999;
-  visibility: hidden;
-}
-span.inline.focus label {
-  color: #ccc;
-}
-span.inline.empty label {
-  visibility: visible;
-}
-span.inline input[type=text],
-span.inline textarea {
-  position: relative;
-  background: none;
-  z-index: 50;
-}*/
-
-span.inlineWrap {
-  position: relative;
-}
-
-/* inline block*/
-span.inlineWrap {
-  display: -moz-inline-box;
-  -moz-box-orient: vertical;
-  display: inline-block;
-  vertical-align: middle;
-  *display: inline;
-  *vertical-align: auto;
-}
-
-/* clearfix */
-span.inlineWrap:after {
-  content: "\0020";
-  display: block;
-  height: 0;
-  clear: both;
-  overflow: hidden;
-  visibility: hidden;
-}
-
-/* has layout */
-span.inlineWrap {
-  *zoom: 1;
-}
