@@ -1,0 +1,5 @@
+A jQuery plugin to add inline labels to form fields.
+
+The inline labels only disappearing once the user has inputted some data. This avoids the problem of the user focusing the field and forgetting what the label was because it disappeared. It also means you can auto-focus fields.
+
+Enjoy!
