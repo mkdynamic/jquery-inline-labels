@@ -57,13 +57,8 @@
       // set input as having inline label
       input.addClass('field_with_inline_label').data('inline.label', label);
 
-      if (isEmpty(input)) {
-        if(label.is("inline-focus"))
-          label.css({opacity:opts.focus_opacity});
-        else
-          label.css({opacity:opts.opacity});
-        label.show();
-      }
+      if (isEmpty(input))
+        showLabel(label, opts);
 
       input
       // focus behaviours
@@ -75,10 +70,9 @@
         label.addClass("inline-focus");
 
         if(isEmpty($(this))){
-          label.css({opacity:opts.focus_opacity});
-          $(this).data('inline.label').show();
+          showLabel(label, opts);
         } else {
-          $(this).data('inline.label').hide();
+          label.hide();
         }
       }).blur(function() {
         var el = $(this);
@@ -88,26 +82,36 @@
         label.removeClass("inline-focus");
 
         if(isEmpty($(this))){
-          label.css({opacity:opts.opacity});
-          $(this).data('inline.label').show();
+          showLabel(label, opts);;
         } else {
-          $(this).data('inline.label').hide();
+          label.hide();
         }
 
       })
 
       // input is fired when typing, pasting, cutting
       .bind('input', function() {
+        var label = $(this).data('inline.label');
+        label.addClass("inline-focus");
+
         if(isEmpty($(this))){
-          label.css({opacity:opts.opacity});
-          $(this).data('inline.label').show();
+          showLabel(label, opts);
         } else {
-          $(this).data('inline.label').hide();
+          label.hide();
         }
       });
     });
 
   };
+
+  function showLabel(label, opts) {
+    if(label.is(".inline-focus"))
+      label.css({opacity:opts.focus_opacity});
+    else
+      label.css({opacity:opts.opacity});
+
+    label.show();
+  }
 
   // private function that can only be used within the plugin
   function innerOffset(obj) {
@@ -129,7 +133,7 @@
   };
 
   function isEmpty(obj) {
-    return obj[0].value === '';
+    return obj.val() === '';
   };
 
   // is an input present
