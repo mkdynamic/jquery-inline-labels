@@ -16,18 +16,19 @@
     // extending an empty object prevents overriding of our defaults object
     var opts = $.extend({}, $.fn.inlineLabel.defaults, options);
 
+    // return this so that it can be chained
     // delegate mousedown to input
-    this.mousedown(function(e) {
+    return this.mousedown(function(e) {
       $.fn.inlineLabel.element.call($(this)).focus();
       e.preventDefault();
     })
 
     .each(function() {
       var label = $(this);
-      var el = $.fn.inlineLabel.element.call($(this));
+      var input = $.fn.inlineLabel.element.call($(this));
 
       // calc offset
-      var leftOffset = el[0].tagName == "TEXTAREA" ? 0 : 2;
+      var leftOffset = input[0].tagName == "TEXTAREA" ? 0 : 2;
 
       label.css({
         // reset some styles
@@ -43,74 +44,69 @@
       })
       .css({
         // adopt styling of inputs
-        fontSize:       el.css('fontSize'),
-        fontFamily:     el.css('fontFamily'),
-        fontWeight:     el.css('fontWeight'),
-        lineHeight:     el.css('lineHeight'),
-        letterSpacing:  el.css('letterSpacing'),
-        top:            el.position().top + innerOffset(el).top,
-        left:           el.position().left + innerOffset(el).left + leftOffset,
-        width:          el.width() - leftOffset
+        fontSize:       input.css('fontSize'),
+        fontFamily:     input.css('fontFamily'),
+        fontWeight:     input.css('fontWeight'),
+        lineHeight:     input.css('lineHeight'),
+        letterSpacing:  input.css('letterSpacing'),
+        top:            input.position().top + innerOffset(input).top,
+        left:           input.position().left + innerOffset(input).left + leftOffset,
+        width:          input.width() - leftOffset
       });
 
       // set input as having inline label
-      el.addClass('field_with_inline_label').data('inline.label', label);
+      input.addClass('field_with_inline_label').data('inline.label', label);
 
-      if (isEmpty(el)) {
+      if (isEmpty(input)) {
         if(label.is("inline-focus"))
           label.css({opacity:opts.focus_opacity});
         else
           label.css({opacity:opts.opacity});
         label.show();
       }
+
+      input
+      // focus behaviours
+      .focus(function() {
+        var el = $(this);
+        var label = el.data('inline.label');
+
+        // focus label
+        label.addClass("inline-focus");
+
+        if(isEmpty($(this))){
+          label.css({opacity:opts.focus_opacity});
+          $(this).data('inline.label').show();
+        } else {
+          $(this).data('inline.label').hide();
+        }
+      }).blur(function() {
+        var el = $(this);
+        var label = el.data('inline.label');
+
+        // unfocus label
+        label.removeClass("inline-focus");
+
+        if(isEmpty($(this))){
+          label.css({opacity:opts.opacity});
+          $(this).data('inline.label').show();
+        } else {
+          $(this).data('inline.label').hide();
+        }
+
+      })
+
+      // input is fired when typing, pasting, cutting
+      .bind('input', function() {
+        if(isEmpty($(this))){
+          label.css({opacity:opts.opacity});
+          $(this).data('inline.label').show();
+        } else {
+          $(this).data('inline.label').hide();
+        }
+      });
     });
 
-    // elm behaviours
-    $(".field_with_inline_label")
-
-    // focus behaviours
-    .focus(function() {
-      var el = $(this);
-      var label = el.data('inline.label');
-
-      // focus label
-      label.addClass("inline-focus");
-
-      if(isEmpty($(this))){
-        label.css({opacity:opts.focus_opacity});
-        $(this).data('inline.label').show();
-      } else {
-        $(this).data('inline.label').hide();
-      }
-    }).blur(function() {
-      var el = $(this);
-      var label = el.data('inline.label');
-
-      // unfocus label
-      label.removeClass("inline-focus");
-
-      if(isEmpty($(this))){
-        label.css({opacity:opts.opacity});
-        $(this).data('inline.label').show();
-      } else {
-        $(this).data('inline.label').hide();
-      }
-
-    })
-
-    // input is fired when typing, pasting, cutting
-    .bind('input', function() {
-      if(isEmpty($(this))){
-        label.css({opacity:opts.opacity});
-        $(this).data('inline.label').show();
-      } else {
-        $(this).data('inline.label').hide();
-      }
-    });
-
-    // ready! show labels
-    // return this so that it can be chained
-    return this;
   };
 
   // private function that can only be used within the plugin
