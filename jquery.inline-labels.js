@@ -30,15 +30,15 @@
       var input = $.fn.inlineLabel.element.call($(this));
 
       // calc offset
-      var leftOffset = input[0].tagName == "TEXTAREA" ? 0 : 2;
+      var leftOffset = input[0].tagName == 'TEXTAREA' ? 0 : 2;
 
       if(!opts.useExternalCSS)
         label.css({
           // reset some styles
-          position:       "absolute",
-          cursor:         "text",
-          display:        "none",
-          overflow:       "hidden",
+          position:       'absolute',
+          cursor:         'text',
+          display:        'none',
+          overflow:       'hidden',
           padding:        0,
           margin:         0,
           border:         0,
@@ -65,16 +65,14 @@
       input
       // focus behaviours
       .focus(function() {
-        var el = $(this);
-        var label = el.data('inline.label');
+        var label = $(this).data('inline.label');
 
         // focus label
         label.addClass(opts.focusClass);
 
         changed(label, hasText($(this)), opts);
       }).blur(function() {
-        var el = $(this);
-        var label = el.data('inline.label');
+        var label = $(this).data('inline.label');
 
         // unfocus label
         label.removeClass(opts.focusClass);
@@ -106,7 +104,7 @@
   }
 
   function showLabel(label, opts) {
-    if(label.is("."+opts.focusClass))
+    if(label.is('.'+opts.focusClass))
       label.css({opacity:opts.focusOpacity});
     else
       label.css({opacity:opts.opacity});
@@ -147,10 +145,10 @@
   $.fn.inlineLabel.defaults = {
     opacity: 0.75,
     focusOpacity: 0.25,
-    labelClass: "inline-label",
-    inputClass: "inline-label-field",
-    focusClass: "inline-label-focus",
-    hasTextClass: "inline-label-has-text",
+    labelClass: 'inline-label',
+    inputClass: 'inline-label-field',
+    focusClass: 'inline-label-focus',
+    hasTextClass: 'inline-label-has-text',
     useExternalCSS: false
   }; // none yet
 })(jQuery);

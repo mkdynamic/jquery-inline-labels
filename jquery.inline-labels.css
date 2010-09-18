@@ -17,6 +17,7 @@ label.inline-label {
   margin: 0 !important;
   border: 0 !important;
 }
+
 label.inline-label-has-text {
   visibility: hidden !important;
 }
