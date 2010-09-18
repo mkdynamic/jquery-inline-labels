@@ -23,6 +23,8 @@
       e.preventDefault();
     })
 
+    .addClass(opts.labelClass)
+
     .each(function() {
       var label = $(this);
       var input = $.fn.inlineLabel.element.call($(this));
@@ -30,19 +32,20 @@
       // calc offset
       var leftOffset = input[0].tagName == "TEXTAREA" ? 0 : 2;
 
+      if(!opts.useExternalCSS)
+        label.css({
+          // reset some styles
+          position:       "absolute",
+          cursor:         "text",
+          display:        "none",
+          overflow:       "hidden",
+          padding:        0,
+          margin:         0,
+          border:         0,
+          //and some opacity
+          opacity:        opts.opacity
+        });
       label.css({
-        // reset some styles
-        position:       "absolute",
-        cursor:         "text",
-        display:        "none",
-        overflow:       "hidden",
-        padding:        0,
-        margin:         0,
-        border:         0,
-        //and some opacity
-        opacity:        0.75
-      })
-      .css({
         // adopt styling of inputs
         fontSize:       input.css('fontSize'),
         fontFamily:     input.css('fontFamily'),
@@ -55,10 +58,9 @@
       });
 
       // set input as having inline label
-      input.addClass('field_with_inline_label').data('inline.label', label);
+      input.addClass(opts.inputClass).data('inline.label', label);
 
-      if (isEmpty(input))
-        showLabel(label, opts);
+      changed(label, hasText(input), opts);
 
       input
       // focus behaviours
@@ -67,46 +69,45 @@
         var label = el.data('inline.label');
 
         // focus label
-        label.addClass("inline-focus");
+        label.addClass(opts.focusClass);
 
-        if(isEmpty($(this))){
-          showLabel(label, opts);
-        } else {
-          label.hide();
-        }
+        changed(label, hasText($(this)), opts);
       }).blur(function() {
         var el = $(this);
         var label = el.data('inline.label');
 
         // unfocus label
-        label.removeClass("inline-focus");
+        label.removeClass(opts.focusClass);
 
-        if(isEmpty($(this))){
-          showLabel(label, opts);;
-        } else {
-          label.hide();
-        }
-
+        changed(label, hasText($(this)), opts);
       })
 
       // input is fired when typing, pasting, cutting
       .bind('input', function() {
         var label = $(this).data('inline.label');
-        label.addClass("inline-focus");
+        label.addClass(opts.focusClass);
 
-        if(isEmpty($(this))){
-          showLabel(label, opts);
-        } else {
-          label.hide();
-        }
+        changed(label, hasText($(this)), opts);
       });
     });
 
   };
 
+  function changed(label, hasText, opts) {
+    if( hasText == true ){
+      label.addClass(opts.hasTextClass);
+      if(!opts.useExternalCSS)
+        label.hide();
+    } else {
+      label.removeClass(opts.hasTextClass);
+      if(!opts.useExternalCSS)
+        showLabel(label, opts);
+    }
+  }
+
   function showLabel(label, opts) {
-    if(label.is(".inline-focus"))
-      label.css({opacity:opts.focus_opacity});
+    if(label.is("."+opts.focusClass))
+      label.css({opacity:opts.focusOpacity});
     else
       label.css({opacity:opts.opacity});
 
@@ -132,13 +133,9 @@
     return { top: topOffset, left: leftOffset };
   };
 
-  function isEmpty(obj) {
-    return obj.val() === '';
-  };
-
   // is an input present
-  function isPresent(obj) {
-    return !isEmpty(obj);
+  function hasText(obj) {
+    return !(obj.val() === '');
   };
 
   // public helper function that can be overridden by the user
@@ -149,7 +146,12 @@
   // plugin defaults
   $.fn.inlineLabel.defaults = {
     opacity: 0.75,
-    focus_opacity: 0.25
+    focusOpacity: 0.25,
+    labelClass: "inline-label",
+    inputClass: "inline-label-field",
+    focusClass: "inline-label-focus",
+    hasTextClass: "inline-label-has-text",
+    useExternalCSS: false
   }; // none yet
 })(jQuery);
 
