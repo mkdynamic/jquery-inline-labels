@@ -19,7 +19,7 @@
     // return this so that it can be chained
     // delegate mousedown to input
     return this.mousedown(function(e) {
-      $.fn.inlineLabel.element.call($(this)).focus();
+      $.fn.inlineLabel.element.call($(this)).mousedown();
       e.preventDefault();
     })
 
