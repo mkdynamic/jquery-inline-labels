@@ -109,7 +109,7 @@
     else
       label.css({opacity:opts.opacity});
 
-    label['fadeIn']();
+    label[opts.showLabelEffect]();
   }
 
   // private function that can only be used within the plugin
@@ -151,6 +151,7 @@
     focusClass: 'inline-label-focus',
     hasTextClass: 'inline-label-has-text',
     useExternalCSS: false,
+    showLabelEffect: 'fadeIn',
     labelFieldLookupFunction: labelFieldLookupFunction
   }; // none yet
 })(jQuery);
