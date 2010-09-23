@@ -109,7 +109,7 @@
     else
       label.css({opacity:opts.opacity});
 
-    label.show();
+    label['fadeIn']();
   }
 
   // private function that can only be used within the plugin
