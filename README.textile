@@ -1,25 +1,25 @@
 A jQuery plugin to add usable inline labels to form fields that don't disappear until you enter input.
 
-== Usage instructions
+h3. Usage instructions
 
 Add this to the HEAD of the document (after you include jQuery, of course):
 
-<script src="jquery.inline-labels.js" type="text/javascript" charset="utf-8"></script>
-<link rel="stylesheet" href="jquery.inline-labels.css" type="text/css" media="all" charset="utf-8" />
+@<script src="jquery.inline-labels.js" type="text/javascript" charset="utf-8"></script>@
+@<link rel="stylesheet" href="jquery.inline-labels.css" type="text/css" media="all" charset="utf-8" />@
 
 And invoke the plugin:
-$('label').inlineLabel();
+@$('label').inlineLabel();@
 
 Or add a class 'inline' to every label you wish to act inline and select based on that:
 
-<label for="msg" class="inline">Enter your msg...</label>
-<textarea id="msg"></textarea>
+@<label for="msg" class="inline">Enter your msg...</label>
+<textarea id="msg"></textarea>@
 
-$('label.inline').inlineLabel();
+@$('label.inline').inlineLabel();@
 
 See demo.html for an example.
 
-== Options
+h3. Options
 
 * opacity - inital opacity of the label (default 0.75)
 * focusOpacity - opacity to set when focused (default 0.25)
@@ -31,21 +31,21 @@ See demo.html for an example.
 * showLabelEffect - effect to use when showing the label (default is fadeIn)
 * labelFieldLookupFunction - function used to lookup the field associated with this label (default uses the 'for' attribute value as a id selector)
 
-== Customizing the appearance of the inline labels
+h3. Customizing the appearance of the inline labels
 
 If using external css you can start with the stylesheet (jquery.inline-labels.css) where you can change the color of the inline labels. By default, they are #999 when blurred and #ccc when the field has focus.
 
 You can also use the classes outlined in the options to target your CSS based on the state the inline label is in.
 
-== Why is this better than inline label plugin X?
+h3. Why is this better than inline label plugin X?
 
 These inline labels only disappearing once the user has inputted some data. This avoids the problem of the user focusing the field and forgetting what the label was because it disappeared. It also means you can auto-focus fields safely.
 
 The plugin automatically detects the styling of the inputs, and then style and positions the inline labels accordingly. It positions the labels precisely so they look exactly like native placeholder text.
 
-== Notes
+h3. Notes
 
 * Doesn't work with resizing (text/zoom). Yet!
 * -Blur doesn't trigger properly when moving directly from a textarea to another input. Possibly this is a browser bug. To be investigated!-
 
-== Todo
+h3. Todo
