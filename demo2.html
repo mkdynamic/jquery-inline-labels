@@ -11,6 +11,8 @@
   <script type="text/javascript" charset="utf-8">
     $(document).ready(function(){
         $('label.inline').inlineLabel({useExternalCSS:true});
+
+        $('label.zurb-inline').inlineLabel({useExternalCSS:true});
     });
   </script>
 </head>
@@ -33,6 +35,30 @@
     <p>
       <label for="foobar" class="inline">Your address</label>
       <input id="foobar" name="foobar" type="text" value="somewheres" />
+    </p>
+
+    <p>
+      <input type="submit" value="Submit" />
+    </p>
+  </form>
+
+  <form action="#" method="get">
+    <h2>My wonderful form!</h2>
+    <h3>Example of using the Zerb CSS3 styles found <a href='http://www.zurb.com/playground/inline-form-labels'>here</a></h3>
+    
+    <p>
+      <label for="foo-zurb" class="zurb-inline">Enter some text&hellip;</label>
+      <textarea id="foo-zurb" name="foo" rows="5" cols="50"></textarea>
+    </p>
+
+    <p>
+      <label for="bar-zurb" class="zurb-inline">Your name</label>
+      <input id="bar-zurb" name="bar" type="text" />
+    </p>
+
+    <p>
+      <label for="foobar-zurb" class="zurb-inline">Your address</label>
+      <input id="foobar-zurb" name="foobar" type="text" value="somewheres" />
     </p>
 
     <p>

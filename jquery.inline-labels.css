@@ -22,3 +22,25 @@ label.inline-label-has-text {
   visibility: hidden !important;
 }
 
+/*
+ * Some styles based on those used in the Zurb inline form labels
+ * http://www.zurb.com/playground/inline-form-labels
+ */
+
+label.zurb-inline {
+  opacity: 0.75;
+  -webkit-transition: opacity 0.15s linear;
+  color:#000;
+}
+
+label.inline-label-focus.zurb-inline {
+  opacity: 0.35;
+}
+
+label.inline-label-has-text.zurb-inline {
+  visibility: visible !important;
+  opacity: 0.0;
+  -webkit-transition-duration: 0s;
+}
+
+
