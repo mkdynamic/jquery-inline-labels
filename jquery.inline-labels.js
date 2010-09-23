@@ -19,7 +19,7 @@
     // return this so that it can be chained
     // delegate mousedown to input
     return this.mousedown(function(e) {
-      $.fn.inlineLabel.element.call($(this)).mousedown();
+      options.labelFieldLookupFunction.call($(this)).mousedown();
       e.preventDefault();
     })
 
@@ -27,7 +27,7 @@
 
     .each(function() {
       var label = $(this);
-      var input = $.fn.inlineLabel.element.call($(this));
+      var input = opts.labelFieldLookupFunction.call($(this));
 
       // calc offset
       var leftOffset = input[0].tagName == 'TEXTAREA' ? 0 : 2;
@@ -136,8 +136,9 @@
     return !(obj.val() === '');
   };
 
-  // public helper function that can be overridden by the user
-  $.fn.inlineLabel.element = function() {
+  // default function to lookup the field for this label
+  // can be overridden in the options
+  var labelFieldLookupFunction = function() {
     return $('#' + this.attr('for'));
   };
 
@@ -149,7 +150,8 @@
     inputClass: 'inline-label-field',
     focusClass: 'inline-label-focus',
     hasTextClass: 'inline-label-has-text',
-    useExternalCSS: false
+    useExternalCSS: false,
+    labelFieldLookupFunction: labelFieldLookupFunction
   }; // none yet
 })(jQuery);
 
