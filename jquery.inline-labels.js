@@ -19,7 +19,7 @@
     // return this so that it can be chained
     // delegate mousedown to input
     return this.mousedown(function(e) {
-      options.labelFieldLookupFunction.call($(this)).mousedown();
+      opts.labelFieldLookupFunction.call($(this)).mousedown();
       e.preventDefault();
     })
 
