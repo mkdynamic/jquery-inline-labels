@@ -29,6 +29,16 @@
       var label = $(this);
       var input = opts.labelFieldLookupFunction.call($(this));
 
+      // hook into the resize event so we can adjust the label position when the window resizes
+      $(window).resize(function(){
+        label.css({
+          // adopt styling of inputs
+          top:            input.position().top + innerOffset(input).top,
+          left:           input.position().left + innerOffset(input).left + leftOffset,
+          width:          input.width() - leftOffset
+        });
+      });
+
       // calc offset
       var leftOffset = input[0].tagName == 'TEXTAREA' ? 0 : 2;
 
