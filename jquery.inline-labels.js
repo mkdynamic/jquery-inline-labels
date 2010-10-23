@@ -16,6 +16,7 @@
     // extending an empty object prevents overriding of our defaults object
     var opts = $.extend({}, $.fn.inlineLabel.defaults, options);
 
+
     // return this so that it can be chained
     // delegate mousedown to input
     return this.mousedown(function(e) {
@@ -91,11 +92,14 @@
       })
 
       // input is fired when typing, pasting, cutting
-      .bind('input', function() {
-        var label = $(this).data('inline.label');
-        label.addClass(opts.focusClass);
+      .bind('keydown', function() {
+        var element = $(this);
+        var label = element.data('inline.label');
+        setTimeout(function () {
+          label.addClass(opts.focusClass);
 
-        changed(label, hasText($(this)), opts);
+          changed(label, hasText(element), opts);
+			  }, 25);
       });
     });
 
@@ -165,4 +169,3 @@
     labelFieldLookupFunction: labelFieldLookupFunction
   }; // none yet
 })(jQuery);
-
