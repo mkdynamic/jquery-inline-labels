@@ -71,7 +71,9 @@
       // set input as having inline label
       input.addClass(opts.inputClass).data('inline.label', label);
 
-      changed(label, hasText(input), opts);
+      setTimeout(function(){
+        changed(label, hasText(input), opts);
+      }, 200);
 
       input
       // focus behaviours
