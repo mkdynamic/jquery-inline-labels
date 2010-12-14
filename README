@@ -27,4 +27,3 @@ The plugin automatically detects the styling of the inputs, and then style and p
 == Notes
 
 * Doesn't work with resizing (text/zoom). Yet!
-* Blur doesn't trigger properly when moving directly from a textarea to another input. Possibly this is a browser bug. To be investigated!

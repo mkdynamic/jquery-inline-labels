@@ -57,7 +57,8 @@
     
     // delegate mousedown to input
     .mousedown(function(e) {
-      $(this).element().focus();
+      $(this).element()[0].focus();
+      e.stopPropagation();
       e.preventDefault();
     })
     
