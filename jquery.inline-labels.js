@@ -6,6 +6,7 @@
 * Copyright (c) 2010 Mark Dodwell (@madeofcode)
 * Licensed under the MIT license
 *
+* Requires: jQuery v1.3.2
 * Version: 0.1.0
 */
 (function($) {
