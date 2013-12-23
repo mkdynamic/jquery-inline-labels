@@ -34,3 +34,7 @@ The plugin automatically detects the styling of the inputs, and then style and p
 
 Written by Mark Dodwell ([@madeofcode](http://twitter.com/madeofcode))
 
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/mkdynamic/jquery-inline-labels/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
